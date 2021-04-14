@@ -39,8 +39,6 @@ kubectl cluster-info --context demo-store
 In both development mode, the container image will not be pushed to remote container registry.
 ====
 
-=== Development mode 
-
 [source,bash]
 ----
 skaffold dev --port-forward #<1>
