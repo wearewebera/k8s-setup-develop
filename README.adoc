@@ -26,7 +26,7 @@ Or
 [source,bash]
 ----
 kind create cluster —name demo-store
-
+kubectl cluster-info --context demo-store
 ----
 
 <1> Please add the other needed options as per your operating system
