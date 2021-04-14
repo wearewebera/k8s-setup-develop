@@ -1,0 +1,7 @@
+namespace: develop-store
+
+resources:   
+  - ../base
+  - ingress.yaml
+
+namePrefix: develop-

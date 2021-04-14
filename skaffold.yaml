@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+build:
+  artifacts:
+  - image: store/customers
+    context: customers
+    docker:
+      dockerfile: customers/Dockerfile
+    sync:
+      infer:
+        - 'customers/*'
+  - image: store/products
+    context: products
+    docker:
+      dockerfile: products/Dockerfile
+    sync:
+      infer:
+        - 'products/*'
+deploy:
+  kustomize:
+    paths:
+    - k8s/local

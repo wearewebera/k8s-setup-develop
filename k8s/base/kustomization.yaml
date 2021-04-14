@@ -1,0 +1,4 @@
+resources:  
+  - customers-definition.yaml
+  - products-definition.yaml
+  
