@@ -17,4 +17,4 @@ spec:
       - path: /v1/products
         backend:
           serviceName: products-service
-          servicePort: 8080    
+          servicePort: 8081    

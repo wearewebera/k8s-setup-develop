@@ -14,7 +14,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -o store-products .
 FROM alpine:3.11.3
 COPY --from=builder /build/store-products .
 
-EXPOSE 8080
+EXPOSE 8081
 
 # Executable
 ENTRYPOINT [ "./store-products" ]
