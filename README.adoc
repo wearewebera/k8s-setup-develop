@@ -1,8 +1,6 @@
 = Kubernetes Development Workflow with Skaffold and Kustomize
 :experimental:
 
-A demo to show how to use https://https://skaffold.dev/[Skaffold] to do rapid application development with Golang.
-
 == Pre-requisites
 
 * https://kubernetes.io/docs/setup/learning-environment/minikube/[minikube]
