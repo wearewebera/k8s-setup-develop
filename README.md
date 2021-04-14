@@ -1,1 +1,72 @@
-# Kubernetes Development Workflow with Skaffold and Kustomize
+= Kubernetes Development Workflow with Skaffold and Kustomize
+:experimental:
+
+A demo to show how to use https://https://skaffold.dev/[Skaffold] to do rapid application development with Golang.
+
+== Pre-requisites
+
+* https://kubernetes.io/docs/setup/learning-environment/minikube/[minikube]
+* https://https://skaffold.dev/[Skaffold]
+* https://kubernetes.github.io/ingress-nginx/user-guide/
+* https://kustomize.io/
+* https://www.docker.com/products/docker-desktop[Docker] (Optional)
+
+== Setup Kubernetes Cluster
+
+[source,bash]
+----
+minikube profile demo-store
+minikube start -p demo-store --memory=8192 --cpus=4 --disk-size=50g #<1>
+eval $(minikube docker-env) #<2>
+----
+
+<1> Please add the other needed options as per your operating system
+<2> Make the current docker context to be that of minikube
+
+== Run Skaffold
+
+[IMPORTANT]
+====
+In both development mode, the container image will not be pushed to remote container registry.
+====
+
+=== Development mode 
+
+[source,bash]
+----
+skaffold dev --port-forward #<1>
+----
+<1> Run skaffold in `dev` mode. The **port-forward** option automatically forward the Kubernetes service port(default is 8080) to localhost port (default is 8080). By default it maps the application service port `8080` to host `8080`
+
+[NOTE]
+====
+* The first build will be bit slower as it needs to cache the libs used
+* You can watch the status via `kubectl get pods -w `, use kbd:[Ctrl+c] to terminate the watch
+====
+
+Once you see your application running (if you had deployed earlier):
+
+[source,bash]
+----
+NAME                                           READY   STATUS    RESTARTS   AGE
+develop-customers-6f99cbb648-lsqwh             1/1     Running   0          5s
+develop-products-8f99cdd856-lgqex              1/1     Running   0          5s
+----
+
+Try opening the url http://127.0.0.1:8080/v1/customers or http://127.0.0.1:8080/v1/products 
+
+Now make any changes to the sources in your editor and try refreshing the browser you will see the microservices live reload happening as usual on the terminal where you had started `skaffold dev` without the `` redeployed.
+
+[TIP]
+====
+I personally recommend https://docs.microsoft.com/en-us/windows/wsl/install-win10[WSL] and https://code.visualstudio.com/docs/remote/remote-overview[VS Code Remote Development]
+====
+
+=== Cleanup 
+
+To delete the application:
+
+[source,bash]
+----
+skaffold delete
+----
