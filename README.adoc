@@ -9,6 +9,7 @@ A demo to show how to use https://https://skaffold.dev/[Skaffold] to do rapid ap
 * https://https://skaffold.dev/[Skaffold]
 * https://kubernetes.github.io/ingress-nginx/user-guide/
 * https://kustomize.io/
+* https://kind.sigs.k8s.io/docs/user/quick-start/  (Optional)
 * https://www.docker.com/products/docker-desktop[Docker] (Optional)
 
 == Setup Kubernetes Cluster
@@ -18,6 +19,14 @@ A demo to show how to use https://https://skaffold.dev/[Skaffold] to do rapid ap
 minikube profile demo-store
 minikube start -p demo-store --memory=8192 --cpus=4 --disk-size=50g #<1>
 eval $(minikube docker-env) #<2>
+----
+
+Or 
+
+[source,bash]
+----
+kind create cluster —name demo-store
+
 ----
 
 <1> Please add the other needed options as per your operating system
