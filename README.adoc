@@ -58,7 +58,7 @@ develop-customers-6f99cbb648-lsqwh             1/1     Running   0          5s
 develop-products-8f99cdd856-lgqex              1/1     Running   0          5s
 ----
 
-Try opening the url http://127.0.0.1:8080/v1/customers or http://127.0.0.1:8080/v1/products 
+Try opening the url http://127.0.0.1:8080/v1/customers or http://127.0.0.1:8081/v1/products 
 
 Now make any changes to the sources in your editor and try refreshing the browser you will see the microservices live reload happening as usual on the terminal where you had started `skaffold dev` without the `` redeployed.
 
