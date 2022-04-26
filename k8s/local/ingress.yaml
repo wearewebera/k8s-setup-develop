@@ -1,20 +1,26 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-store
   annotations:
     # use the shared ingress-nginx
-    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: store.local
     http:
       paths:
       - path: /v1/customers
+        pathType: Prefix
         backend:
-          serviceName: customers-service
-          servicePort: 8080
+          service:
+            name: customers-service
+            port:
+              number: 8080
       - path: /v1/products
+        pathType: Prefix
         backend:
-          serviceName: products-service
-          servicePort: 8081    
+          service:
+            name: products-service
+            port:
+              number: 8081
